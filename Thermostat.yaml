@@ -124,7 +124,7 @@ trigger:
 action:
   - choose:
     - conditions:
-      - condition: and
+      - condition:
         conditions:
             - condition: template
               value_template: >
