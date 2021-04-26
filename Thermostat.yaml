@@ -32,7 +32,7 @@ blueprint:
       description: Input desired temperature for the day (Default = 23°C)
       default: 23
       selector:
-        number: 15
+        number: 
           step: 0.5
           min: 15
           max: 27
@@ -47,7 +47,7 @@ blueprint:
       description: Input desired temperature for the night (Default = 24 °C)
       default: 24
       selector:
-        number: 15
+        number: 
           step: 0.5
           min: 15
           max: 27
