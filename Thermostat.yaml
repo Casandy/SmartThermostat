@@ -193,10 +193,10 @@ action:
                 below: !input wintermode
         sequence:
           - service: !input thermostat
-              target:
-                entity_id: climate.home
-              data:
-                temperature: !input nighttime_temp
+            target:
+              entity_id: climate.home
+            data:
+              temperature: !input nighttime_temp
           - service: deconz.configure
             data:
               entity: !input thermostat
