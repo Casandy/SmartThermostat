@@ -33,10 +33,10 @@ blueprint:
       default: 23
       selector:
         number:
-        step: 0.5
-        min: 15
-        max: 27
-        unit_of_measurement: "°C"
+          step: 0.5
+          min: 15
+          max: 27
+          unit_of_measurement: "°C"
     #nighttime:
      # name: Nighttime
       #description: Input the starting time for the night
@@ -48,10 +48,10 @@ blueprint:
       default: 24
       selector:
         number:
-        step: 0.5
-        min: 15
-        max: 27
-        unit_of_measurement: "°C"
+          step: 0.5
+          min: 15
+          max: 27
+          unit_of_measurement: "°C"
     heater:
       name: Heater
       description: The heating device
