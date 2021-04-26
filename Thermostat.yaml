@@ -124,7 +124,7 @@ trigger:
 action:
   - choose:
     - condition: and
-           conditions:
+          conditions:
             - condition: template
             value_template: >
               {% set t = strptime(states('sensor.time'), "%H:%M:%S") %}
