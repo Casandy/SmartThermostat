@@ -22,11 +22,11 @@ blueprint:
       selector:
         entity:
           domain: group
-    #daytime:
-     # name: Daytime
-     # description: Input the starting time for the day
-     # selector:
-      #  time:
+    daytime:
+      name: Daytime
+      description: Input the starting time for the day
+      selector:
+        time:
     daytime_temp:
       name: Daytime Temperature
       description: Input desired temperature for the day (Default = 23°C)
@@ -37,11 +37,11 @@ blueprint:
           min: 15
           max: 27
           unit_of_measurement: "°C"
-    #nighttime:
-     # name: Nighttime
-      #description: Input the starting time for the night
-      #selector:
-       # time:
+    nighttime:
+      name: Nighttime
+      description: Input the starting time for the night
+      selector:
+        time:
     nighttime_temp:
       name: Nighttime Temperature
       description: Input desired temperature for the night (Default = 24 °C)
