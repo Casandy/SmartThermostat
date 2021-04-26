@@ -52,8 +52,8 @@ blueprint:
           min: 15
           max: 27
           unit_of_measurement: "°C"
-    heater:
-      name: Heater
+    thermostat:
+      name: Thermostat
       description: The heating device
       selector:
         entity:
@@ -84,24 +84,24 @@ max_exceeded: silent
 max: 10
 
 variables:
-  heater: !input heater
+  heater: !input thermostat
   temp_sensor: !input temp_sensor
   currenttempoffset: >-
-    {{ ((states(temp_sensor)|float - state_attr(heater, 'current_temperature')|float) * 100) }}
+    {{ ((states(temp_sensor)|float - state_attr(thermostat, 'current_temperature')|float) * 100) }}
   offset_val:  >-
     {%- if (currenttempoffset != 0) %}
-      {{ currenttempoffset + (state_attr(heater, 'offset')|int) }}
+      {{ currenttempoffset + (state_attr(thermostat, 'offset')|int) }}
     {% elif (currenttempoffset == 0) %}
-      {{ state_attr(heater, 'offset')|int }}
+      {{ state_attr(thermostat, 'offset')|int }}
     {% endif %}
 
 trigger:
   - platform: state
-    entity_id: !input heater
+    entity_id: !input thermostat
     from: 'off'
     to: 'heat'
   - platform: template
-    value_template: "{{ state_attr(heater, 'current_temperature') }}"
+    value_template: "{{ state_attr(thermostat, 'current_temperature') }}"
   - platform: state
     entity_id: 
       - !input temp_sensor
@@ -136,13 +136,13 @@ action:
         sequence:
           - service: deconz.configure
             data:
-              entity: !input heater
+              entity: !input thermostat
               field: /config
               data:
                 offset: 0
           - service: deconz.configure
             data:
-              entity: !input heater
+              entity: !input thermostat
               field: /config
               data:
                 offset: >-
@@ -150,7 +150,7 @@ action:
           - service: climate.set_hvac_mode
             data:
               hvac_mode: 'heat'
-            entity_id: !input heater
+            entity_id: !input thermostat
           - delay: 00:00:05
       - conditions:
           - condition: or
@@ -166,6 +166,6 @@ action:
           - service: climate.set_hvac_mode
             data:
               hvac_mode: 'off'
-            entity_id: !input heater
+            entity_id: !input thermostat
     default: []
     
