@@ -161,7 +161,7 @@ action:
               data:
                 hvac_mode: 'heat'
               entity_id: !input thermostat
-           - delay: 00:00:05
+            - delay: 00:00:05
     - conditions:
             - condition: or
               conditions:
