@@ -1,6 +1,6 @@
 blueprint:
   name: Smart Thermostat
-  description: A blueprint for managing heater
+  description: A blueprint for managing heating
   domain: automation
   input:
     weather:
