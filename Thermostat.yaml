@@ -123,82 +123,23 @@ trigger:
 
 action:
   - choose:
-    - conditions:
-      - condition:
-            - condition: template
-              value_template: >
-                {% set t = strptime(states('sensor.time'), "%H:%M:%S") %}
-                {% set day = strptime(state_attr(daytime, 'time'), "%H:%M:%S") %}
-                {% set night = strptime(state_attr(nighttime, 'time'), "%H:%M:%S") %}
-                {{ day <= t < night}}
-            - condition: state
-              entity_id: !input window_sensor
-              state: 'off'
-            - condition: numeric_state
-              entity_id: !input weather
-              attribute: temperature
-              below: !input wintermode
-        sequence:
-            - service: !input thermostat
-              target:
-                entity_id: zone.home
-              data:
-                temperature: !input daytime_temp
-            - service: deconz.configure
-              data:
-                entity: !input thermostat
-                field: /config
-                data:
-                  offset: 0
-            - service: deconz.configure
-              data:
-                entity: !input thermostat
-                field: /config
-                data:
-                  offset: >-
-                    {{ offset_val }}
-            - service: climate.set_hvac_mode
-              data:
-                hvac_mode: 'heat'
-              entity_id: !input thermostat
-            - delay: 00:00:05
-    - conditions:
-            - condition: or
-              conditions:
-                - condition: state
-                  entity_id: !input window_sensor
-                  state: 'on'
-                - condition: numeric_state
-                  entity_id: !input weather
-                  attribute: temperature
-                  above: !input wintermode
-            sequence:
-            - service: climate.set_hvac_mode
-              data:
-                hvac_mode: 'off'
-              entity_id: !input thermostat
-    default:
-      - condition: and
+      - conditions:
+          - condition: and
             conditions:
-          - condition: state
-            entity_id: !input window_sensor
-            state: 'off'
-          - condition: numeric_state
-            entity_id: !input weather
-            attribute: temperature
-            below: !input wintermode
+              - condition: state
+                entity_id: !input window_sensor
+                state: 'off'
+              - condition: numeric_state
+                entity_id: !input weather
+                attribute: temperature
+                below: !input wintermode
         sequence:
-          - service: !input thermostat
-            target:
-              entity_id: zone.home
-            data:
-              temperature: !input nighttime_temp
           - service: deconz.configure
             data:
               entity: !input thermostat
               field: /config
               data:
-               offset: 0
+                offset: 0
           - service: deconz.configure
             data:
               entity: !input thermostat
@@ -226,4 +167,4 @@ action:
             data:
               hvac_mode: 'off'
             entity_id: !input thermostat
-    
+    default: []
