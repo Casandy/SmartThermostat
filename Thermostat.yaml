@@ -136,13 +136,13 @@ action:
         sequence:
           - service: deconz.configure
             data:
-              entity: !input thermostat
+              entity: !input heater
               field: /config
               data:
                 offset: 0
           - service: deconz.configure
             data:
-              entity: !input thermostat
+              entity: !input heater
               field: /config
               data:
                 offset: >-
@@ -150,7 +150,7 @@ action:
           - service: climate.set_hvac_mode
             data:
               hvac_mode: 'heat'
-            entity_id: !input thermostat
+            entity_id: !input heater
           - delay: 00:00:05
       - conditions:
           - condition: or
@@ -166,6 +166,6 @@ action:
           - service: climate.set_hvac_mode
             data:
               hvac_mode: 'off'
-            entity_id: !input thermostat
+            entity_id: !input heater
     default: []
     
