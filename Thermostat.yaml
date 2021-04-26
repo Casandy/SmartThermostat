@@ -194,7 +194,7 @@ action:
         sequence:
           - service: !input thermostat
             target:
-             entity_id: climate.home
+              entity_id: climate.home
             data:
               temperature: !input nighttime_temp
           - service: deconz.configure
