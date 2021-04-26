@@ -124,7 +124,7 @@ trigger:
 action:
   - choose:
     - condition: template
-              value_template: >
+      value_template: >
                 {% set t = strptime(states('sensor.time'), "%H:%M:%S") %}
                 {% set day = strptime(state_attr(daytime, 'time'), "%H:%M:%S") %}
                 {% set night = strptime(state_attr(nighttime, 'time'), "%H:%M:%S") %}
