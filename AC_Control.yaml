@@ -48,6 +48,17 @@ blueprint:
           min: 18
           max: 35
           unit_of_measurement: "°C"
+    wintermode_delay:
+      name: Wintermode Delay
+      description: Time the outside temperature needs to stay below summer temperature to turn the AC off.
+      default: 30
+      selector:
+        number:
+          mode: box
+          min: 1
+          max: 86400
+          unit_of_measurement: minutes
+    
 
 mode: queued
 max_exceeded: silent
