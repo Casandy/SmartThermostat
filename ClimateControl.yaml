@@ -21,7 +21,8 @@ blueprint:
       description: Sensor checking if the window is open
       selector:
         entity:
-          domain: group
+          domain: sensor
+          device_class: none
     daytime:
       name: Daytime
       description: Input the starting time for the day
