@@ -96,10 +96,10 @@ action:
         conditions:
         - condition: template
           value_template: >
-            {% set t = as_timestamp(now()) %}
-            {% set day = state_attr(daytime, 'timestamp') %}
-            {% set night = state_attr(nighttime, 'timestamp') %}
-            {{ day <= t < night}
+             {% set t = strptime(states('sensor.time'), "%H:%M:%S") %}
+                  {% set day = strptime(state_attr(daytime, 'time'), "%H:%M:%S") %}
+                  {% set night = strptime(state_attr(nighttime, 'time'), "%H:%M:%S") %}
+                  {{ night <= t < day}}
         - condition: state
           entity_id: !input window_sensor
           state: 'off'
@@ -118,10 +118,10 @@ action:
         conditions:
         - condition: template
           value_template: >
-            {% set t = as_timestamp(now()) %}
-            {% set day = state_attr(daytime, 'timestamp') %}
-            {% set night = state_attr(nighttime, 'timestamp') %}
-            {{ day <= t < night}}        
+             {% set t = strptime(states('sensor.time'), "%H:%M:%S") %}
+                  {% set day = strptime(state_attr(daytime, 'time'), "%H:%M:%S") %}
+                  {% set night = strptime(state_attr(nighttime, 'time'), "%H:%M:%S") %}
+                  {{ night <= t < day}}       
         - condition: or
           conditions:
             - condition: state
