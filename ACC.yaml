@@ -107,9 +107,7 @@ action:
             entity_id: !input thermostat
           data:
             percentage: 100            
-    - conditions:
-      - condition: and
-        conditions:    
+    - conditions:    
         - condition: or
           conditions:
             - condition: state
