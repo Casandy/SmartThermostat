@@ -122,7 +122,7 @@ action:
           target:
             entity_id: !input thermostat
           data:
-            percentage: 33
+            percentage: 0
     default: []
       
             
