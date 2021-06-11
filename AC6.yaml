@@ -137,9 +137,8 @@ action:
               attribute: temperature
               below: !input wintermode
       sequence:
-        - service: fan.turn_off
-          target: 
-            entity_id: !input thermostat
+        - service: homeassistant.turn_off 
+          entity_id: !input thermostat
     - conditions:
           - condition: and
             conditions:
@@ -186,9 +185,8 @@ action:
               attribute: temperature
               below: !input wintermode
       sequence:
-        - service: fan.turn_off
-          target: 
-            entity_id: !input thermostat 
+         - service: homeassistant.turn_off 
+           entity_id: !input thermostat
     default:
       - choose:
       
