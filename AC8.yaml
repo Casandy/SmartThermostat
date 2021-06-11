@@ -1,6 +1,6 @@
 blueprint:
-  name: Smart Thermostat
-  description: A blueprint for managing heating
+  name: AC Control
+  description: A blueprint for managing cooling
   domain: automation
   input:
     weather:
@@ -132,8 +132,11 @@ action:
               attribute: temperature
               below: !input wintermode
       sequence:
-        - service: homeassistant.turn_off 
-          entity_id: !input thermostat
+        - service: fan.set_percentage
+          target:
+            entity_id: !input thermostat
+          data:
+            percentage: 0
     - conditions:
           - condition: and
             conditions:
@@ -175,8 +178,11 @@ action:
               attribute: temperature
               below: !input wintermode
       sequence:
-         - service: homeassistant.turn_off 
-           entity_id: !input thermostat
+         - service: fan.set_percentage
+          target:
+            entity_id: !input thermostat
+          data:
+            percentage: 0
     default:
       
             
