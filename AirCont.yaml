@@ -95,12 +95,18 @@ action:
       - condition: and
         conditions:
         - condition: state
-          entity_id: !input window_sensor
-          state: 'off'
-        - condition: numeric_state
-          entity_id: !input weather
-          attribute: temperature
-          above: !input wintermode
+            entity_id: !input window_sensor
+            state: 'off'
+        - condition: or
+          conditions:
+          - condition: numeric_state
+            entity_id: !input temp_sensor
+            attribute: temperature
+            above: !input wintermode
+          - condition: numeric_state
+            entity_id: !input weather
+            attribute: temperature
+            above: !input wintermode
       sequence:
         - service: fan.set_percentage
           target:
@@ -122,7 +128,7 @@ action:
           target:
             entity_id: !input thermostat
           data:
-            percentage: 0
+            percentage: 33
     default: []
       
             
