@@ -99,40 +99,40 @@ action:
           {% set night = strptime(state_attr(nighttime, 'time'), "%H:%M:%S") %}
           {{ day <= t < night}}
     - conditions:
-          - condition: and
-            conditions:
-              - condition: state
-                entity_id: !input window_sensor
-                state: 'off'
-              - condition: numeric_state
-                entity_id: !input weather
-                attribute: temperature
-                above: !input wintermode
-        sequence:
-          - service: fan.set_preset_mode
-            target:
-              entity_id: !input thermostat
-            data:
-              preset_mode: auto
-          - service: fan.set_percentage
-            target:
-              entity_id: !input thermostat
-            data:
-              percentage: 50            
-      - conditions:
-          - condition: or
-            conditions:
-              - condition: state
-                entity_id: !input window_sensor
-                state: 'on'
-              - condition: numeric_state
-                entity_id: !input weather
-                attribute: temperature
-                below: !input wintermode
-        sequence:
-          - service: fan.turn_off
-            target: 
-              entity_id: !input thermostat
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: !input window_sensor
+          state: 'off'
+        - condition: numeric_state
+          entity_id: !input weather
+          attribute: temperature
+          above: !input wintermode
+      sequence:
+        - service: fan.set_preset_mode
+          target:
+            entity_id: !input thermostat
+          data:
+            preset_mode: auto
+        - service: fan.set_percentage
+          target:
+            entity_id: !input thermostat
+          data:
+            percentage: 50            
+    - conditions:
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: !input window_sensor
+              state: 'on'
+            - condition: numeric_state
+              entity_id: !input weather
+              attribute: temperature
+              below: !input wintermode
+      sequence:
+        - service: fan.turn_off
+          target: 
+            entity_id: !input thermostat
     default:
       - choose:
       - conditions:
