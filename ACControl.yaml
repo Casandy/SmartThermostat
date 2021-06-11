@@ -97,8 +97,7 @@ action:
         {% set day = strptime(state_attr(daytime, 'time'), "%H:%M:%S") %}
         {% set night = strptime(state_attr(nighttime, 'time'), "%H:%M:%S") %}
         {{ day <= t < night}}
-  - choose:
-      - conditions:
+    - conditions:
           - condition: and
             conditions:
               - condition: state
