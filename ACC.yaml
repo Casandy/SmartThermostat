@@ -106,7 +106,7 @@ action:
           target:
             entity_id: !input thermostat
           data:
-            percentage: 100            
+            percentage: 67            
     - conditions:    
         - condition: or
           conditions:
@@ -122,8 +122,8 @@ action:
           target:
             entity_id: !input thermostat
           data:
-            percentage: 0
-    default:
+            percentage: 33
+    default: []
       
             
     
