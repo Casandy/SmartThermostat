@@ -95,8 +95,8 @@ action:
       - condition: and
         conditions:
         - condition: state
-            entity_id: !input window_sensor
-            state: 'off'
+          entity_id: !input window_sensor
+          state: 'off'
         - condition: or
           conditions:
           - condition: numeric_state
