@@ -112,7 +112,7 @@ action:
           target:
             entity_id: !input thermostat
           data:
-            percentage: 50            
+            percentage: 100            
     - conditions:
       - condition: and
         conditions:
@@ -155,7 +155,7 @@ action:
           target:
             entity_id: !input thermostat
           data:
-            percentage: 10
+            percentage: 33
     - conditions:
       - condition: and
         conditions:
