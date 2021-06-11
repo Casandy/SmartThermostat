@@ -179,10 +179,10 @@ action:
               below: !input wintermode
       sequence:
          - service: fan.set_percentage
-          target:
-            entity_id: !input thermostat
-          data:
-            percentage: 0
+           target:
+             entity_id: !input thermostat
+           data:
+             percentage: 0
     default:
       
             
