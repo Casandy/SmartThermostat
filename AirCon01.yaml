@@ -80,7 +80,7 @@ trigger:
     above: !input wintermode
     for: !input wintermode_delay
   - platform: numeric_state
-    entity_id: !input weather
+    entity_id: !input temp_sensor
     attribute: temperature
     above: !input wintermode
     for: !input wintermode_delay
@@ -108,8 +108,8 @@ action:
             attribute: temperature
             above: !input wintermode
           - condition: time
-            after: !input daytime
-            before: !input nighttime
+            after: input_datetime.daytime
+            before: input_datetime.nighttime
       sequence:
         - service: fan.set_percentage
           target:
