@@ -107,6 +107,9 @@ action:
             entity_id: !input weather
             attribute: temperature
             above: !input wintermode
+          - condition: time
+            after: !input daytime
+            before: !input nighttime
       sequence:
         - service: fan.set_percentage
           target:
@@ -123,6 +126,13 @@ action:
               entity_id: !input weather
               attribute: temperature
               below: !input wintermode
+            - condition: numeric_state
+              entity_id: !input weather
+              attribute: temperature
+              above: !input wintermode
+            - condition: time
+              after: !input nighttime
+              before: !input daytime         
       sequence:
         - service: fan.set_percentage
           target:
