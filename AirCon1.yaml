@@ -77,7 +77,7 @@ trigger:
   - platform: numeric_state
     entity_id: !input weather
     attribute: temperature
-    below: !input wintermode
+    above: !input wintermode
     for: !input wintermode_delay
   - platform: numeric_state
     entity_id: !input weather
@@ -131,8 +131,8 @@ action:
               attribute: temperature
               above: !input wintermode
             - condition: time
-              after: !input nighttime
-              before: !input daytime         
+              after: input_datetime.nighttime
+              before: input_datetime.daytime         
       sequence:
         - service: fan.set_percentage
           target:
