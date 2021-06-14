@@ -111,11 +111,11 @@ action:
             after: input_datetime.daytime
             before: input_datetime.nighttime
       sequence:
-        - service: fan.set_percentage
+        - service: fan.turn_on
           target:
             entity_id: !input thermostat
           data:
-            percentage: 67            
+            preset_mode: auto            
     - conditions:    
         - condition: or
           conditions:
@@ -134,11 +134,11 @@ action:
               after: input_datetime.nighttime
               before: input_datetime.daytime         
       sequence:
-        - service: fan.set_percentage
+        - service: fan.turn_on
           target:
             entity_id: !input thermostat
           data:
-            percentage: 33
+            preset_mode: auto
     default: []
       
             
