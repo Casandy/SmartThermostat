@@ -92,6 +92,16 @@ trigger:
 action:
   - choose:
     - conditions:
+      - condition: time
+              after: input_datetime.nighttime
+              before: input_datetime.daytime
+      sequence:
+        - service: fan.set_percentage
+          target:
+            entity_id: !input thermostat
+          data:
+            percentage: 33
+    - conditions:
       - condition: and
         conditions:
         - condition: state
@@ -107,15 +117,12 @@ action:
             entity_id: !input weather
             attribute: temperature
             above: !input wintermode
-          - condition: time
-            after: input_datetime.daytime
-            before: input_datetime.nighttime
       sequence:
         - service: fan.set_percentage
           target:
             entity_id: !input thermostat
           data:
-            percentage: 67           
+            percentage: 100           
     - conditions:    
         - condition: or
           conditions:
@@ -129,10 +136,7 @@ action:
             - condition: numeric_state
               entity_id: !input weather
               attribute: temperature
-              above: !input wintermode
-            - condition: time
-              after: input_datetime.nighttime
-              before: input_datetime.daytime         
+              above: !input wintermode         
       sequence:
         - service: fan.set_percentage
           target:
