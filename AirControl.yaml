@@ -117,9 +117,9 @@ action:
       sequence:
         - service: fan.set_percentage
           target:
-            entity_id: !input thermostat
+            entity_id: thermostat
           data:
-            percentage: 100           
+            percentage: 67           
     - conditions:    
         - condition: or
           conditions:
