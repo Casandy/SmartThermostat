@@ -110,7 +110,7 @@ action:
               - condition: numeric_state
                 entity_id: temp_sensor.temperature
                 above: !input summermode
-             - condition: numeric_state
+              - condition: numeric_state
                 entity_id: !input weather
                 attribute: temperature
                 above: !input summermode
