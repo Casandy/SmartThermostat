@@ -105,8 +105,7 @@ action:
           entity_id: !input window_sensor
           state: 'off'
         - condition: numeric_state
-          entity_id: !input temp_sensor
-          attribute: temperature
+          entity_id: !input temp_sensor.temperature
           above: !input summermode
       sequence:
         - service: fan.set_percentage
