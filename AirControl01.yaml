@@ -86,8 +86,6 @@ trigger:
   - platform: time
     at: !input nighttime
 
-variables:
-  temperature: !input temp_sensor.temperature
 
 action:
   - choose:
@@ -108,7 +106,7 @@ action:
           entity_id: !input window_sensor
           state: 'off'
         - condition: numeric_state
-          entity_id: temperature
+          entity_id: temp_sensor.temperature
           above: !input summermode
       sequence:
         - service: fan.set_percentage
