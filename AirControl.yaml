@@ -104,16 +104,10 @@ action:
         - condition: state
           entity_id: !input window_sensor
           state: 'off'
-        - condition: or
-          conditions:
-          - condition: numeric_state
-            entity_id: !input temp_sensor
-            attribute: temperature
-            above: !input summermode
-          - condition: numeric_state
-            entity_id: !input weather
-            attribute: temperature
-            above: !input summermode
+        - condition: numeric_state
+          entity_id: !input temp_sensor
+          attribute: temperature
+          above: !input summermode
       sequence:
         - service: fan.set_percentage
           target:
