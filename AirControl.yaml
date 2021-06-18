@@ -91,8 +91,8 @@ action:
   - choose:
     - conditions:
       - condition: time
-        after: input_datetime.nighttime
-        before: input_datetime.daytime
+        after: !input nighttime
+        before: !input daytime
       sequence:
         - service: fan.set_percentage
           target:
@@ -108,7 +108,8 @@ action:
           - condition: or
             conditions:
               - condition: numeric_state
-                entity_id: temp_sensor.temperature
+                entity_id: !input temp_sensor
+                attribute: temperature
                 above: !input summermode
               - condition: numeric_state
                 entity_id: !input weather
@@ -127,7 +128,8 @@ action:
               entity_id: !input window_sensor
               state: 'on'
             - condition: numeric_state
-              entity_id: temp_sensor.temperature
+              entity_id: !input temp_sensor
+              attribute: temperature
               below: !input summermode
             - condition: numeric_state
               entity_id: !input weather
