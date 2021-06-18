@@ -38,7 +38,7 @@ blueprint:
       selector:
         entity:
           domain: fan
-    wintermode:
+    summermode:
       name: Summer Temperature
       description: The ouside temperature needs to be above this to activate cooling (Default = 25°C)
       default: 25
@@ -48,8 +48,8 @@ blueprint:
           min: 18
           max: 35
           unit_of_measurement: "°C"
-    wintermode_delay:
-      name: Wintermode Delay
+    summermode_delay:
+      name: Summermode Delay
       description: Time the outside temperature needs to stay below summer temperature to turn the AC off.
       default: 30
       selector:
@@ -60,9 +60,6 @@ blueprint:
           unit_of_measurement: minutes
     
 
-mode: queued
-max_exceeded: silent
-max: 10
 
 
 trigger:
@@ -77,13 +74,13 @@ trigger:
   - platform: numeric_state
     entity_id: !input weather
     attribute: temperature
-    above: !input wintermode
-    for: !input wintermode_delay
+    above: !input summermode
+    for: !input summermode_delay
   - platform: numeric_state
     entity_id: !input temp_sensor
     attribute: temperature
-    above: !input wintermode
-    for: !input wintermode_delay
+    above: !input summermode
+    for: !input summermode_delay
   - platform: time
     at: !input daytime
   - platform: time
@@ -112,11 +109,11 @@ action:
           - condition: numeric_state
             entity_id: !input temp_sensor
             attribute: temperature
-            above: !input wintermode
+            above: !input summermode
           - condition: numeric_state
             entity_id: !input weather
             attribute: temperature
-            above: !input wintermode
+            above: !input summermode
       sequence:
         - service: fan.set_percentage
           target:
@@ -132,11 +129,11 @@ action:
             - condition: numeric_state
               entity_id: !input weather
               attribute: temperature
-              below: !input wintermode
+              above: !input summermode
             - condition: numeric_state
               entity_id: !input weather
               attribute: temperature
-              above: !input wintermode         
+              above: !input summermode         
       sequence:
         - service: fan.set_percentage
           target:
