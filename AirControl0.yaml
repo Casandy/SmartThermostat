@@ -109,7 +109,6 @@ action:
             conditions:
               - condition: numeric_state
                 entity_id: !input temp_sensor
-                attribute: temperature
                 above: !input summermode
               - condition: numeric_state
                 entity_id: !input weather
@@ -129,7 +128,6 @@ action:
               state: 'on'
             - condition: numeric_state
               entity_id: !input temp_sensor
-              attribute: temperature
               below: !input summermode
             - condition: numeric_state
               entity_id: !input weather
