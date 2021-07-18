@@ -1,0 +1,10 @@
+type: entities
+entities:
+  - entity: fan.ac_fan
+  - entity: sensor.tempsensor_temperature
+  - entity: sensor.tempsensor_humidity
+  - entity: binary_sensor.ewelink_ds01_0565ea22_ias_zone
+  - entity: weather.home
+  - entity: automation.ac_control_2
+title: AC Control
+state_color: true
